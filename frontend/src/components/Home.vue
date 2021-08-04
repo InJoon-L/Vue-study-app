@@ -2,23 +2,25 @@
     <div>
         <p>{{ err_msg }}</p>
         <v-container fluid>
-            <v-data-iterator :items="books" hide-default-footer hide-default-header>
-                <template v-slot:default="props">   
-                    <v-row>
-                        <v-col v-for="book in props.items" :key="book.bookId" cols="3">
-                            <v-card>
-                                <v-img max-height="150" contain :src="book.cover" />
-                                <v-divider></v-divider>
-                                <v-card-title>
-                                    <router-link :to="'/books/' + book.bookId">{{ book.title }}</router-link>
-                                </v-card-title>
-                                <v-card-subtitle>{{ book.author }}</v-card-subtitle>
-                            </v-card>
-                        </v-col>
-                    </v-row>
-                </template>
-            </v-data-iterator>
+            <v-row>
+                <v-col v-for="book in books" :key="book.bookId" cols="3">
+                    <v-card>
+                        <v-img max-height="150" contain :src="book.cover" />
+                        <v-divider></v-divider>
+                        <v-card-title>
+                            <router-link :to="'/books/' + book.bookId">{{ book.title }}</router-link>
+                        </v-card-title>
+                        <v-card-subtitle>{{ book.author }}</v-card-subtitle>
+                    </v-card>
+                </v-col>
+            </v-row>
         </v-container>
+        <div class="text-center">
+            <v-pagination
+                v-model="page"
+                :length="6"
+            ></v-pagination>
+        </div>
     </div>
 </template>
 
@@ -30,7 +32,8 @@ export default {
     data() {
         return {
             books: [],
-            err_msg: ''
+            err_msg: '',
+            page: 1,
         }
     },
     mounted() {
