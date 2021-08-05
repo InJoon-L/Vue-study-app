@@ -15,12 +15,14 @@
                               name="name"
                               label="name"
                               type="text"
+                              v-model="name"
                            ></v-text-field>
                            <v-text-field
                               prepend-icon="person"
-                              name="login"
-                              label="Login"
+                              name="id"
+                              label="Id"
                               type="text"
+                              v-model="userid"
                            ></v-text-field>
                            <v-text-field
                               id="password"
@@ -28,12 +30,13 @@
                               name="password"
                               label="Password"
                               type="password"
+                              v-model="password"
                            ></v-text-field>
                         </v-form>
                      </v-card-text>
                      <v-card-actions>
                         <v-spacer></v-spacer>
-                        <v-btn color="primary" to="/auth/login">Register</v-btn>
+                        <v-btn color="primary" @click="register">Register</v-btn>
                      </v-card-actions>
                   </v-card>
                </v-flex>
@@ -44,12 +47,33 @@
 </template>
 
 <script>
+import axios from 'axios';
+
 export default {
     name: "Register",
     data() {
         return {
-            good: '',
+            name: '',
+            userid: '',
+            password: ''
         }
+    },
+    methods: {
+         register() {
+            let value = {
+               name: this.name,
+               userid: this.userid,
+               password: this.password
+            }
+            axios.post('/api/users', value)
+            .then(res => {
+               console.log(res);
+               this.$router.push('/login');
+            })
+            .catch(err => {
+               console.log(err)
+            })
+         }
     }
 }
 </script>

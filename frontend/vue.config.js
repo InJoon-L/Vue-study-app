@@ -11,7 +11,7 @@ module.exports = {
     }
   },
 
-  outputDir: '../backend/public',
+  outputDir: '../miniNodeServer/public',
 
   transpileDependencies: [
     'vuetify'

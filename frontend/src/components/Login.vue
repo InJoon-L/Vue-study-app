@@ -12,9 +12,10 @@
                         <v-form>
                            <v-text-field
                               prepend-icon="person"
-                              name="login"
-                              label="Login"
+                              name="id"
+                              label="Id"
                               type="text"
+                              v-model="userid"
                            ></v-text-field>
                            <v-text-field
                               id="password"
@@ -22,13 +23,14 @@
                               name="password"
                               label="Password"
                               type="password"
+                              v-model="password"
                            ></v-text-field>
                         </v-form>
                      </v-card-text>
                      <v-card-actions>
-                        <v-btn color="primary" to="/users">Register</v-btn>
+                        <v-btn color="primary" to="/register">Register</v-btn>
                         <v-spacer></v-spacer>
-                        <v-btn color="primary" to="/">Login</v-btn>
+                        <v-btn color="primary" @click="login">Login</v-btn>
                      </v-card-actions>
                   </v-card>
                </v-flex>
@@ -43,12 +45,24 @@ export default {
     name: "Login",
     data() {
         return {
-            // success: ''
+            userid: this.userid,
+            password: this.password
         }
+    },
+    methods: {
+       login() {
+         let value = {
+            userid: this.userid,
+            password: this.password
+         }
+         this.$store.dispatch('login', value)
+         .then(() => {
+            this.$router.push('/')
+         })
+         .catch(() => {
+         })
+       } 
     }
+
 }
 </script>
-
-<style>
-
-</style>

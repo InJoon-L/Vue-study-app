@@ -12,7 +12,8 @@ const routes = [
     {
         path: '/',
         name: 'Home',
-        component: Home
+        component: Home,
+        meta: {requiresAuth: true}
     },
     {
         path: '/books/:bookId',
@@ -20,12 +21,12 @@ const routes = [
         component: Book
     },
     {
-        path: '/auth/login',
+        path: '/login',
         name: 'Login',
         component: Login
     },
     {
-        path:'/users',
+        path:'/register',
         name: 'Register',
         component: Register
 
@@ -37,5 +38,16 @@ const router = new VueRouter({
     base: process.env.BASE_URL,
     routes
 })
+
+router.beforeEach((to, from, next) => {
+    if (to.matched.some((record) => record.meta.requiresAuth)) {
+        if(localStorage.getItem('accessToken') == null) {
+            alert('Signin please')
+            next('/login');
+        }
+    }
+
+    next();
+});
 
 export default router
