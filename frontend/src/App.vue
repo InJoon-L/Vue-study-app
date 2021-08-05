@@ -4,11 +4,13 @@
       app
       color="primary"
       dark>
-        <h1>Books</h1>
-      <v-spacer></v-spacer>
       <v-btn to="/" text>
-        <v-icon>mdi-home</v-icon>
-        <span class="mr-2">Home</span>
+        <h1>Books</h1>
+      </v-btn>
+      <v-spacer></v-spacer>
+      <v-btn to="/auth/login" text>
+        <v-icon>mdi-login</v-icon>
+        <span class="mr-2">Login</span>
       </v-btn>
     </v-app-bar>
 
