@@ -19,6 +19,11 @@ export default new Vuex.Store({
             state.accessToken = payload.accessToken;
             localStorage.setItem('accessToken', state.accessToken);
         },
+        loginFailed(state) {
+            state.accessToken = null;
+            localStorage.removeItem('accessToken');
+        }
+        ,
         logout(state) {
             state.accessToken = null;
             localStorage.removeItem('accessToken');
@@ -40,7 +45,8 @@ export default new Vuex.Store({
             })
             .catch((err) => {
                 console.log(err);
-                commit('logout');
+                commit('loginFailed');
+                return Promise.reject(err);
             })
         },
         logout({commit}) {
