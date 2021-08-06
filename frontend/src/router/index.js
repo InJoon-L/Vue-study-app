@@ -4,6 +4,8 @@ import Home from '../components/Home.vue';
 import Book from '../components/Book.vue';
 import Login from '../components/Login.vue';
 import Register from '../components/Register.vue';
+import Add from '../components/AddMemo.vue';
+import Read from '../components/ReadMemo.vue';
 
 
 Vue.use(VueRouter);
@@ -30,6 +32,18 @@ const routes = [
         name: 'Register',
         component: Register
 
+    },
+    {
+        path: '/add',
+        name: 'Add',
+        component: Add,
+        meta: {requiresAuth: true}
+    },
+    {
+        path: '/memos/:memoId',
+        name: 'Read',
+        component: Read,
+        meta: {requiresAuth: true}
     }
 ]
 

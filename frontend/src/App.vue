@@ -8,9 +8,9 @@
       <v-btn to="/" text>
         <h1>Memos</h1>
       </v-btn>
-      <v-btn to="#" text>
+      <v-btn to="/add" text>
         <v-icon>mdi-book</v-icon>
-        <span class="mr-2">memos</span>
+        <span class="mr-2">Add Memo</span>
       </v-btn>
       <v-spacer></v-spacer>
       <v-btn to="/login" text v-if="flag">

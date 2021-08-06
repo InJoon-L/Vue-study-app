@@ -1,50 +1,42 @@
 <template>
     <div>
-        <!-- <p>{{ err_msg }}</p>
-        <v-container fluid>
+         <v-container fluid>
             <v-row>
-                <v-col v-for="book in books" :key="book.bookId" cols="3">
+                <v-col v-for="memo in memos" :key="memo.memoid" cols="4">
+                    <router-link :to="'/memos/' + memo.memoid">
                     <v-card>
-                        <v-img max-height="150" contain :src="book.cover" />
-                        <v-divider></v-divider>
+                        <!-- <v-img max-height="150" contain :src="book.cover" />
+                        <v-divider></v-divider> -->
                         <v-card-title>
-                            <router-link :to="'/books/' + book.bookId">{{ book.title }}</router-link>
+                            {{ memo.title }}
                         </v-card-title>
-                        <v-card-subtitle>{{ book.author }}</v-card-subtitle>
+                        <v-divider></v-divider>
+                        <v-card-subtitle>{{ memo.savedTime }}</v-card-subtitle>
                     </v-card>
+                    </router-link>
                 </v-col>
             </v-row>
         </v-container>
-        <div class="text-center">
-            <v-pagination
-                v-model="page"
-                :length="6"
-            ></v-pagination>
-        </div> -->
     </div>
 </template>
 
 <script>
-// import axios from 'axios';
+import memoApi from '../apis/memos'
 
 export default {
     name: "Home",
     data() {
         return {
-            books: [],
-            // err_msg: '',
-            // page: 1,
+            memos: [],
         }
     },
     mounted() {
-        // axios.get('/api/books')
-        // .then(res => {
-        //     console.log(res.data)
-        //     this.books = res.data
-        // })
-        // .catch(err => {
-        //     this.err_msg = err.err_msg
-        // })
+        memoApi.getMemos()
+        .then(res => {
+            console.log(res)
+            this.memos = res.data
+        })
+        .catch(() => {})
     }
 }
 </script>
