@@ -19,5 +19,11 @@ export default {
             method: 'post',
             data: req
         })
+    },
+    deleteMemo(memoId) {
+        return sendRequest({
+            url: '/api/memos/' + memoId,
+            method: 'delete'
+        })
     }
 }

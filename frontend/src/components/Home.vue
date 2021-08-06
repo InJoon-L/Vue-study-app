@@ -11,7 +11,7 @@
                             {{ memo.title }}
                         </v-card-title>
                         <v-divider></v-divider>
-                        <v-card-subtitle>{{ memo.savedTime }}</v-card-subtitle>
+                        <v-card-subtitle>{{ memo.userid }}</v-card-subtitle>
                     </v-card>
                     </router-link>
                 </v-col>
